@@ -28,7 +28,7 @@ export class MatSearchableInputComponent {
   @ViewChild('searchBox', { read: ElementRef })
   private _searchBoxInputElement: ElementRef;
 
-  /** Laber of the input placeholder.  */
+  /** Label of the input placeholder.  */
   @Input()
   placeholder = 'Search..';
 

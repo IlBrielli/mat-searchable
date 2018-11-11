@@ -1,10 +1,10 @@
 <mat-form-field>
-<mat-select matSearchable placeholder="Country">
-  <mat-searchable-input placeholder="Search.."></mat-searchable-input>
-  <ng-container *ngFor="let country of countries">
-    <mat-option *matSearchableItem [value]="country.code">
-      {{ country.name }}
-    </mat-option>
-  </ng-container>
-</mat-select>
+  <mat-select matSearchable placeholder="Country">
+    <mat-searchable-input placeholder="Search.."></mat-searchable-input>
+    <ng-container *ngFor="let country of countries">
+      <mat-option *matSearchableItem [value]="country.code">
+        {{ country.name }}
+      </mat-option>
+    </ng-container>
+  </mat-select>
 </mat-form-field>

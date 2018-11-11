@@ -15,7 +15,7 @@ The most important trait of *MatSearchable* (compared to other extension librari
 
 *MatSearchable* does not manipulate your original input data or require you to mess up your clean code. It leverages advanced DOM manipulation techniques, reaching identical performance to the built-in core directives, like **ngFor**.
 
-**Try it**, if you don't believe me: [https://stackblitz.com/github/bl4y/mat-searchable](https://stackblitz.com/github/bl4y/mat-searchable?file=src%2Fapp%2Fapp.component.html) .
+**Try** it on StackBlitz: [https://stackblitz.com/edit/mat-searchable-demo](https://stackblitz.com/edit/mat-searchable-demo)
 
 ## How to use it?
 #### Install the package:
@@ -39,9 +39,38 @@ export class AppModule { }
 ```
 
 #### Add the neccessary directives and components to your current logic:
+```html
+<mat-select matSearchable>
+  <mat-searchable-input placeholder="What do you want to search for?"></mat-searchable-input>
+  <ng-container *ngFor="let country of countries">
+    <mat-option *matSearchableItem [value]="country.code">
+      {{ country.name }}
+    </mat-option>
+  </ng-container>
+</mat-select>
+```
+
+Here is a diff to show how easy it is to extend the *MatSelect* functionality with *MatSearchable*:
 ![Diff](https://raw.githubusercontent.com/bl4y/mat-searchable/master/docs/diff.png)
 
 Pretty awesome, huh?
+
+## Inputs
+Currently the only input supported on the `MatSearchableInputComponent` is setting the placeholder text.
+
+```typescript
+/** Label of the input placeholder.  */
+@Input()
+placeholder = 'Search..';
+```
+
+## Dependencies
+* `@angular/core`: `>=5.0.0`
+* `@angular/common`: `>=5.0.0`
+* `@angular/forms`: `>=5.0.0`
+* `@angular/cdk`: `>=5.0.0`
+* `@angular/material`: `>=5.0.0`
+* `rxjs`: `>=5.5.2`
 
 ## Contributions
 Contributions are always welcome, please open an issue or a pull request!

@@ -6,7 +6,7 @@
 ## What is MatSearchable?
 *MatSearchable* is a lightweight library for adding filtering and searching capabilities to the [MatSelect](https://material.angular.io/components/select/overview) component.
 
-![Intro](docs/intro.png)
+![Intro](https://raw.githubusercontent.com/bl4y/mat-searchable/master/docs/intro.png)
 
 ## ..yet another searching library?
 Well, almost!
@@ -15,7 +15,7 @@ The most important trait of *MatSearchable* (compared to other extension librari
 
 *MatSearchable* does not manipulate your original input data or require you to mess up your clean code. It leverages advanced DOM manipulation techniques, reaching identical performance to the built-in core directives, like **ngFor**.
 
-**Try it**, if you don't believe me:
+**Try it**, if you don't believe me: [https://stackblitz.com/github/bl4y/mat-searchable](https://stackblitz.com/github/bl4y/mat-searchable?file=src%2Fapp%2Fapp.component.html) .
 
 ## How to use it?
 #### Install the package:
@@ -32,14 +32,14 @@ import { MatSearchableModule } from '@bl4y/mat-searchable';
     BrowserModule,
     BrowserAnimationsModule,
 
-    MatSearchableModule //! <<<<<<<<<
+    MatSearchableModule //! <- IMPORT THIS
   ]
 })
 export class AppModule { }
 ```
 
 #### Add the neccessary directives and components to your current logic:
-![Diff](docs/diff.png)
+![Diff](https://raw.githubusercontent.com/bl4y/mat-searchable/master/docs/diff.png)
 
 Pretty awesome, huh?
 

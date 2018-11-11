@@ -1,7 +1,23 @@
 {
   "name": "@bl4y/mat-searchable",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Gergely Bikki <blaymist@gmail.com>",
+  "keywords": [
+    "angular",
+    "angular 2",
+    "angular 4",
+    "angular 6",
+    "material",
+    "material2",
+    "select",
+    "dropwdown",
+    "options",
+    "search",
+    "filter",
+    "searchable",
+    "MatSelect",
+    "MatOptions"
+  ],
   "license": "MIT",
   "peerDependencies": {
     "@angular/core": ">=5.0.0",

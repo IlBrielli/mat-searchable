@@ -1,8 +1,12 @@
 # MatSearchable
+[![npm version](https://img.shields.io/npm/v/@bl4y/mat-searchable.svg?style=flat-square)](https://www.npmjs.com/package/@bl4y/mat-searchable)
+
 [https://github.com/bl4y/mat-searchable](https://github.com/bl4y/mat-searchable)
 
 ## What is MatSearchable?
 *MatSearchable* is a lightweight library for adding filtering and searching capabilities to the [MatSelect](https://material.angular.io/components/select/overview) component.
+
+![Intro](docs/intro.png)
 
 ## ..yet another searching library?
 Well, almost!

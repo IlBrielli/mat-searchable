@@ -56,7 +56,7 @@ Here is a diff to show how easy it is to extend the *MatSelect* functionality wi
 Pretty awesome, huh?
 
 ## Inputs
-Supported inputs on the `MatSearchableInputComponent` component:
+Supported inputs of the `MatSearchableInputComponent` component:
 
 ```typescript
 /** Label of the input placeholder.  */
@@ -64,10 +64,10 @@ Supported inputs on the `MatSearchableInputComponent` component:
 placeholder = 'Search..';
 ```
 
-Supported inputs on the `MatSearchable` directive:
+Supported inputs of the `MatSearchable` directive:
 
 ```typescript
-/** Whether the input box (and selection, as well) should be cleared on opening the dropdown. */
+/** Whether the input box should be cleared on opening the dropdown. */
 @Input()
 clearSearchInput = false;
 ```

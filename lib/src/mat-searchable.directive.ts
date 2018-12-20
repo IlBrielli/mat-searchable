@@ -18,7 +18,7 @@ export class MatSearchableDirective implements OnInit, AfterContentInit, OnDestr
   @ContentChild(MatSearchableInputComponent)
   private _searchableBox: MatSearchableInputComponent;
 
-  /** Whether the input box (and selection, as well) should be cleared on opening the dropdown. */
+  /** Whether the input box should be cleared on opening the dropdown. */
   @Input()
   clearSearchInput = false;
 
@@ -38,15 +38,9 @@ export class MatSearchableDirective implements OnInit, AfterContentInit, OnDestr
       .subscribe(
         opened => {
           if (opened) {
-            if (this.clearSearchInput && !!this._matSelect.value) {
-              // HACK: normally, these are not accessible.
-              this._matSelect._selectionModel.clear();
-              (<any>this._matSelect)._propagateChanges(undefined);
-            }
-
             this._searchableBox.focus();
           } else if (this.clearSearchInput) {
-            this._clear();
+            this._searchableBox.clear();
           }
         }
       );
@@ -69,16 +63,6 @@ export class MatSearchableDirective implements OnInit, AfterContentInit, OnDestr
   ngOnDestroy() {
     this._destroys$.next();
     this._destroys$.complete();
-  }
-
-  /** Silently clears the search input and the filtering. */
-  private _clear() {
-    this._searchableBox.clear(true);
-    this._getDirectiveChanges()
-      .pipe(
-        first()
-      )
-      .subscribe(optionDirectives => this._filterOptionDirectives(optionDirectives, ''));
   }
 
   /** Filters the available options according to the search value. */

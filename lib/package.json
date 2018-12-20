@@ -1,12 +1,13 @@
 {
   "name": "@bl4y/mat-searchable",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "author": "Gergely Bikki <blaymist@gmail.com>",
   "keywords": [
     "angular",
     "angular 2",
     "angular 4",
     "angular 6",
+    "angular 7",
     "material",
     "material2",
     "select",

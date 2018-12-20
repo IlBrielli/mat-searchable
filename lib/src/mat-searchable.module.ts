@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatSelectModule } from '@angular/material';
+import { MatSelectModule, MatInputModule, MatButtonModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { MatSearchableDirective } from './mat-searchable.directive';
@@ -22,7 +22,9 @@ import { MatSearchableInputComponent } from './mat-searchable-input.component';
     CommonModule,
     ReactiveFormsModule,
 
-    MatSelectModule
+    MatSelectModule,
+    MatInputModule,
+    MatButtonModule
   ]
 })
 export class MatSearchableModule { }

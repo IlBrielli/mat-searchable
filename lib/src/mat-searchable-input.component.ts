@@ -19,9 +19,12 @@ import { Observable } from 'rxjs';
   template: `
     <div class="mat-tab-header">
       <input matInput autocomplete="off" class="mat-input-element" [formControl]="_searchBox" [placeholder]="placeholder" #searchBox />
+      <button mat-button *ngIf="!!(changes$ | async)" mat-icon-button class="button-clear" aria-label="Clear" (click)="clear()">
+        <div class="icon-clear"></div>
+      </button>
     </div>
   `,
-  styles: [ 'input { padding: 16px; box-sizing: border-box; }' ]
+  styleUrls: ['./mat-searchable-input.component.css']
 })
 export class MatSearchableInputComponent {
   /** Holds the reference to the input DOM element. */
@@ -77,6 +80,7 @@ export class MatSearchableInputComponent {
   clear(silent = false) {
     if (!silent) {
       this._searchBox.setValue('');
+      this.focus();
     } else {
       this._searchBoxInputElement.nativeElement.value = '';
     }

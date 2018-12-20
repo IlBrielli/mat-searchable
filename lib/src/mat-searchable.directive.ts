@@ -1,7 +1,7 @@
-import { Directive, OnInit, AfterContentInit, OnDestroy, ContentChildren, QueryList, ContentChild } from '@angular/core';
+import { Directive, OnInit, AfterContentInit, OnDestroy, ContentChildren, QueryList, ContentChild, Input } from '@angular/core';
 import { MatSelect } from '@angular/material';
 import { Subject, Observable } from 'rxjs';
-import { takeUntil, debounceTime, distinctUntilChanged, withLatestFrom, startWith } from 'rxjs/operators';
+import { takeUntil, debounceTime, distinctUntilChanged, withLatestFrom, startWith, first } from 'rxjs/operators';
 import { MatSearchableItemDirective } from './mat-searchable-item.directive';
 import { MatSearchableInputComponent } from './mat-searchable-input.component';
 
@@ -17,6 +17,10 @@ export class MatSearchableDirective implements OnInit, AfterContentInit, OnDestr
   /** Holds the reference to the search input component. */
   @ContentChild(MatSearchableInputComponent)
   private _searchableBox: MatSearchableInputComponent;
+
+  /** Whether the input box (and selection, as well) should be cleared on opening the dropdown. */
+  @Input()
+  clearSearchInput = false;
 
   /** Subject for signalling component destruction. */
   private _destroys$ = new Subject<null>();
@@ -34,7 +38,15 @@ export class MatSearchableDirective implements OnInit, AfterContentInit, OnDestr
       .subscribe(
         opened => {
           if (opened) {
+            if (this.clearSearchInput && !!this._matSelect.value) {
+              // HACK: normally, these are not accessible.
+              this._matSelect._selectionModel.clear();
+              (<any>this._matSelect)._propagateChanges(undefined);
+            }
+
             this._searchableBox.focus();
+          } else if (this.clearSearchInput) {
+            this._clear();
           }
         }
       );
@@ -50,27 +62,40 @@ export class MatSearchableDirective implements OnInit, AfterContentInit, OnDestr
         takeUntil(this._destroys$)
       )
       .subscribe(
-        ([searchValue, optionDirectives]) => {
-          optionDirectives.forEach(item => {
-            const value = searchValue + '';
-            const contains = item.text.includes(value.trim().toLowerCase());
-            if (contains) {
-              if (item.detached) {
-                item.attach();
-              }
-            } else {
-              if (!item.detached) {
-                item.detach();
-              }
-            }
-          });
-        }
+        ([searchValue, optionDirectives]) => this._filterOptionDirectives(optionDirectives, searchValue)
       );
   }
 
   ngOnDestroy() {
     this._destroys$.next();
     this._destroys$.complete();
+  }
+
+  /** Silently clears the search input and the filtering. */
+  private _clear() {
+    this._searchableBox.clear(true);
+    this._getDirectiveChanges()
+      .pipe(
+        first()
+      )
+      .subscribe(optionDirectives => this._filterOptionDirectives(optionDirectives, ''));
+  }
+
+  /** Filters the available options according to the search value. */
+  private _filterOptionDirectives(optionDirectives: QueryList<MatSearchableItemDirective>, searchValue: string) {
+    optionDirectives.forEach(item => {
+      const value = searchValue + '';
+      const contains = item.text.includes(value.trim().toLowerCase());
+      if (contains) {
+        if (item.detached) {
+          item.attach();
+        }
+      } else {
+        if (!item.detached) {
+          item.detach();
+        }
+      }
+    });
   }
 
   /** Returns the stream of searchable items changes. */

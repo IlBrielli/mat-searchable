@@ -1,5 +1,5 @@
 <mat-form-field>
-  <mat-select matSearchable placeholder="Country">
+  <mat-select matSearchable placeholder="Country" [clearSearchInput]="true">
     <mat-searchable-input placeholder="Search.."></mat-searchable-input>
     <ng-container *ngFor="let country of countries">
       <mat-option *matSearchableItem [value]="country.code">

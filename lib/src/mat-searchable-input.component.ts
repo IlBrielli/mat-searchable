@@ -74,7 +74,11 @@ export class MatSearchableInputComponent {
   }
 
   /** Resets the value of the input element. */
-  clear() {
-    this._searchBox.setValue('');
+  clear(silent = false) {
+    if (!silent) {
+      this._searchBox.setValue('');
+    } else {
+      this._searchBoxInputElement.nativeElement.value = '';
+    }
   }
 }

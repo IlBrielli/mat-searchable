@@ -40,7 +40,7 @@ export class AppModule { }
 
 #### Add the neccessary directives and components to your current logic:
 ```html
-<mat-select matSearchable>
+<mat-select matSearchable [clearSearchInput]="true">
   <mat-searchable-input placeholder="What do you want to search for?"></mat-searchable-input>
   <ng-container *ngFor="let country of countries">
     <mat-option *matSearchableItem [value]="country.code">
@@ -56,12 +56,20 @@ Here is a diff to show how easy it is to extend the *MatSelect* functionality wi
 Pretty awesome, huh?
 
 ## Inputs
-Currently the only input supported on the `MatSearchableInputComponent` is setting the placeholder text.
+Supported inputs on the `MatSearchableInputComponent` component:
 
 ```typescript
 /** Label of the input placeholder.  */
 @Input()
 placeholder = 'Search..';
+```
+
+Supported inputs on the `MatSearchable` directive:
+
+```typescript
+/** Whether the input box (and selection, as well) should be cleared on opening the dropdown. */
+@Input()
+clearSearchInput = false;
 ```
 
 ## Dependencies

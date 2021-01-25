@@ -1,5 +1,5 @@
 import { Directive, OnInit, AfterContentInit, OnDestroy, ContentChildren, QueryList, ContentChild, Input } from '@angular/core';
-import { MatSelect } from '@angular/material';
+import { MatSelect } from '@angular/material/select';
 import { Subject, Observable } from 'rxjs';
 import { takeUntil, debounceTime, distinctUntilChanged, withLatestFrom, startWith, first } from 'rxjs/operators';
 import { MatSearchableItemDirective } from './mat-searchable-item.directive';
